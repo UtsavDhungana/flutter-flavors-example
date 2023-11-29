@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 var flavorConfigProvider;
 
 void mainCommon(FlavorConfig config) {
-  flavorConfigProvider = StateProvider((ref) => config);
+  flavorConfigProvider = config;
   runApp(
     ProviderScope(
       child: MyApp(),
@@ -15,10 +15,10 @@ void mainCommon(FlavorConfig config) {
   );
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final config = ref.read(flavorConfigProvider);
+  Widget build(BuildContext context) {
+    final config = flavorConfigProvider;
     return MaterialApp(
       title: config.appTitle,
       theme: config.theme,
@@ -28,18 +28,18 @@ class MyApp extends ConsumerWidget {
   }
 }
 
-class MyHomePage extends ConsumerWidget {
+class MyHomePage extends StatelessWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    log(ref.read(flavorConfigProvider.notifier).state.appTitle);
+  Widget build(BuildContext context) {
+    // log(ref.read(flavorConfigProvider.notifier).state.appTitle);
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          ref.read(flavorConfigProvider).appTitle,
+          flavorConfigProvider.appTitle,
         ),
       ),
       body: Image.asset(
-        ref.read(flavorConfigProvider).imageLocation!,
+        flavorConfigProvider.imageLocation!,
         fit: BoxFit.fill,
         height: MediaQuery.of(context).size.height,
       ),
