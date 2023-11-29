@@ -60,7 +60,6 @@ android {
             versionCode 1
             versionName "1.0"
         }
-
         mercedes {
             dimension "app"
             applicationId "com.example.flutter_flavors_example.mercedes"

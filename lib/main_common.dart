@@ -19,7 +19,6 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final config = ref.read(flavorConfigProvider);
-
     return MaterialApp(
       title: config.appTitle,
       theme: config.theme,
